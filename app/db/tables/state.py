@@ -2,6 +2,7 @@ from sqlalchemy import Column, Float, String, Table
 
 from app.db.tables import metadata
 
+
 state_table = Table(
     "state",
     metadata,

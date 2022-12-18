@@ -1,8 +1,9 @@
 from typing import Optional
+from pydantic import Field
 
 from pydantic import BaseModel
 
 
 class State(BaseModel):
-    command: str
-    metadata: Optional[float] = 1
+    state: str = Field(alias='command')
+    color: Optional[float] = Field(None, alias='metadata')

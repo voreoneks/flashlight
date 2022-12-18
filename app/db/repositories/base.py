@@ -1,5 +1,5 @@
-import abc
 from typing import Type
+import abc
 
 from pydantic.main import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
