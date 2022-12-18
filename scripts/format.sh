@@ -1,10 +1,10 @@
 #!/bin/sh -e
 set -x
 
-isort cli.py
+isort app/main.py
 isort app/
 isort tests/
 
-black cli.py
+black app/main.py
 black app/
 black tests/

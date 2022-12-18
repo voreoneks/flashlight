@@ -3,6 +3,7 @@ from sqlalchemy.orm.decl_api import registry
 mapper_registry = registry()
 metadata = mapper_registry.metadata
 
+
 def get_metadata():
     from app.db.tables.state import state_table
 
