@@ -4,7 +4,9 @@ from pydantic import BaseSettings
 
 
 class AppSettings(BaseSettings):
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:55499/postgres"
+    DATABASE_URL: str = (
+        "postgresql+asyncpg://postgres:postgres@localhost:55499/postgres"
+    )
     DEBUG: bool = True
 
 

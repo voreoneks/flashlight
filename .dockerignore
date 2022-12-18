@@ -7,3 +7,7 @@ env/
 
 .env*
 .git
+.gitlab-ci.yml
+.gitignore
+Dockerfile
+docker-compose*

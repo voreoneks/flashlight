@@ -1,0 +1,31 @@
+version: "3.3"
+
+services:
+  api:
+    build: ./
+    container_name: flashlight
+    restart: always
+    volumes:
+      - /usr/local/flashlight/upload:/data/upload
+    command: >
+        sh -c "python cli.py migrate &&
+               python cli.py api --host 0.0.0.0 --port 8000"
+    env_file:
+      - ./env/.env.main
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    
+  db:
+    image: postgres:13.2
+    command: ["postgres",]
+    environment:
+      PGDATA: /data/postgres
+    env_file:
+      - ./env/.env.main
+    ports:
+      - "5432:5432"
+    volumes:
+      - /usr/local/flashlight/db:/data/postgres
+    restart: always
