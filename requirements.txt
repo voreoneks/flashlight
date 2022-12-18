@@ -1,7 +1,9 @@
+asyncpg
 alembic
 black
 fastapi
 flake8
+greenlet
 isort
 loguru
 pydantic

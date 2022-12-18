@@ -10,6 +10,11 @@ class AppSettings(BaseSettings):
         cast=str,
         default='postgresql+asyncpg://postgres:postgres@localhost:55499/postgres'
     )
+    DEBUG: bool = config(
+        'DEBUG',
+        cast=bool,
+        default= True
+    )
 
 @lru_cache()
 def get_app_settings() -> AppSettings:
