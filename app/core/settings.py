@@ -1,15 +1,14 @@
-from pydantic import BaseSettings
-from starlette.config import Config
 from functools import lru_cache
 
-config = Config('.env')
+from pydantic import BaseSettings
+
 
 class AppSettings(BaseSettings):
-    DATABASE_URL: str = config(
-        'DATABASE_URL',
-        cast=str,
-        default='postgresql+asyncpg://postgres:postgres@localhost:55499/postgres'
+    DATABASE_URL: str = (
+        "postgresql+asyncpg://postgres:postgres@localhost:55499/postgres"
     )
+    DEBUG: bool = True
+
 
 @lru_cache()
 def get_app_settings() -> AppSettings:

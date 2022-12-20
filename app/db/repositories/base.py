@@ -1,7 +1,9 @@
 from typing import Type
 import abc
+
 from pydantic.main import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
+
 
 class BaseRepository(abc.ABC):
     def __init__(self, session: AsyncSession) -> None:

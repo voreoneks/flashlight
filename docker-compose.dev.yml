@@ -1,0 +1,25 @@
+version: "3"
+services:
+ db:
+  image: postgres
+  environment:
+   POSTGRES_DB: postgres
+   POSTGRES_USER: postgres
+   POSTGRES_PASSWORD: postgres
+   PG_DATA: /var/lib/postgresql/data/pgdata
+  expose:
+   - "5432"
+  ports:
+   - "55499:5432"
+  volumes:
+   - /var/lib/postresql/db/
+  deploy:
+   placement:
+    constraints:
+     - node.hostname == vmAPT1
+
+# docker-compose -f ./docker-compose.dev.yml up --build 
+# default='postgresql+asyncpg://postgres:postgres@localhost:55499/postgres'
+# python3 cli.py api --host 0.0.0.0 --port 8000 --workers 3
+# python3 cli.py worker
+

@@ -1,5 +1,10 @@
-from pydantic import BaseModel
+from typing import Optional
+
+from pydantic import BaseModel, Field
+
+from app.resources.enums import Command
+
 
 class State(BaseModel):
-    command: str
-    metadata: float
+    state: Command = Field(alias="command")
+    color: Optional[float] = Field(None, alias="metadata")
