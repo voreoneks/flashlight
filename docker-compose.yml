@@ -6,7 +6,7 @@ services:
     container_name: flashlight
     restart: always
     volumes:
-      - /usr/local/flashlight/upload:/data/upload
+      - /usr/local/flashlight/upload:/data/flashlight/upload
     command: >
         sh -c "python cli.py migrate &&
                python cli.py api --host 0.0.0.0 --port 8000"
@@ -18,14 +18,23 @@ services:
       - db
     
   db:
-    image: postgres:13.2
+    image: postgres
     command: ["postgres",]
     environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       PGDATA: /data/postgres
     env_file:
       - ./env/.env.main
+    expose:
+      - "55499"
     ports:
-      - "5432:5432"
+      - "55499:5432"
     volumes:
       - /usr/local/flashlight/db:/data/postgres
     restart: always
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == vmAPT1

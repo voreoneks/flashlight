@@ -9,8 +9,16 @@ router = APIRouter(prefix="/control", tags=["control"])
 
 
 @router.post("/command")
-async def get_command(
-    data: State, repository: StateRepository = Depends(get_repository(StateRepository))
-):
+async def post_command(
+    data: State, 
+    repository: StateRepository = Depends(get_repository(StateRepository))
+) -> State:
     response: State = await repository.create_state(data)
+    return response
+
+@router.get('/')
+async def get_state(
+    repository: StateRepository = Depends(get_repository(StateRepository))
+) -> State:
+    response: State = await repository.get_state()
     return response
